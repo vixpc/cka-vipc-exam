@@ -1,0 +1,6 @@
+phamcongvi@cp1:~$ kubectl get node -owide
+NAME    STATUS   ROLES           AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION    CONTAINER-RUNTIME
+cp1     Ready    control-plane   4m33s   v1.28.8   10.148.0.13   <none>        Ubuntu 20.04.6 LTS   5.15.0-1040-gcp   containerd://1.7.2
+node1   Ready    <none>          2m7s    v1.28.8   10.148.0.14   <none>        Ubuntu 20.04.6 LTS   5.15.0-1040-gcp   containerd://1.7.2
+node2   Ready    <none>          94s     v1.28.8   10.148.0.15   <none>        Ubuntu 20.04.6 LTS   5.15.0-1040-gcp   containerd://1.7.2
+phamcongvi@cp1:~$ 

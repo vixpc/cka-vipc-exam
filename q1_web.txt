@@ -1,0 +1,68 @@
+phamcongvi@cp1:~$ kubectl get all -n webapp
+NAME                               READY   STATUS    RESTARTS   AGE
+pod/hello-world-6fdc99499c-m9cl5   1/1     Running   0          16m
+pod/hello-world-6fdc99499c-nt2p5   1/1     Running   0          15m
+pod/hello-world-6fdc99499c-tqwt4   1/1     Running   0          15m
+
+NAME                  TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+service/hello-world   NodePort   10.96.12.203   <none>        80:30313/TCP   11m
+
+NAME                          READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/hello-world   3/3     3            3           16m
+
+NAME                                     DESIRED   CURRENT   READY   AGE
+replicaset.apps/hello-world-6fdc99499c   3         3         3       16m
+phamcongvi@cp1:~$ kubectl get node -owide
+NAME    STATUS   ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION    CONTAINER-RUNTIME
+cp1     Ready    control-plane   27m   v1.28.8   10.148.0.13   <none>        Ubuntu 20.04.6 LTS   5.15.0-1040-gcp   containerd://1.7.2
+node1   Ready    <none>          25m   v1.28.8   10.148.0.14   <none>        Ubuntu 20.04.6 LTS   5.15.0-1040-gcp   containerd://1.7.2
+node2   Ready    <none>          24m   v1.28.8   10.148.0.15   <none>        Ubuntu 20.04.6 LTS   5.15.0-1040-gcp   containerd://1.7.2
+phamcongvi@cp1:~$ curl http://10.148.0.14:30313
+Hello, world!
+Version: 2.0.0
+hello-world-6fdc99499c-nt2p5
+phamcongvi@cp1:~$ kubectl -n webapp get endpoints hello-world
+NAME          ENDPOINTS                                                    AGE
+hello-world   192.168.104.1:8080,192.168.104.2:8080,192.168.166.129:8080   23m
+phamcongvi@cp1:~$ kubectl -n webapp run bb --image=yauritux/busybox-curl --restart=Never -it --rm -- sh
+If you don't see a command prompt, try pressing enter.
+/home # curl http://10.96.12.203:80
+Hello, world!
+Version: 2.0.0
+hello-world-6fdc99499c-nt2p5
+/home # exit
+
+
+phamcongvi@cloudshell:~ (sanguine-fusion-418307)$ gcloud compute instances list
+NAME: cp1
+ZONE: asia-southeast1-c
+MACHINE_TYPE: e2-medium
+PREEMPTIBLE: 
+INTERNAL_IP: 10.148.0.13
+EXTERNAL_IP: 34.142.157.225
+STATUS: RUNNING
+
+NAME: node1
+ZONE: asia-southeast1-c
+MACHINE_TYPE: e2-medium
+PREEMPTIBLE: 
+INTERNAL_IP: 10.148.0.14
+EXTERNAL_IP: 35.185.184.28
+STATUS: RUNNING
+
+NAME: node2
+ZONE: asia-southeast1-c
+MACHINE_TYPE: e2-medium
+PREEMPTIBLE: 
+INTERNAL_IP: 10.148.0.15
+EXTERNAL_IP: 34.124.195.115
+STATUS: RUNNING
+
+phamcongvi@cloudshell:~ (sanguine-fusion-418307)$ curl http://35.185.184.28:30313
+Hello, world!
+Version: 2.0.0
+hello-world-6fdc99499c-nt2p5
+phamcongvi@cloudshell:~ (sanguine-fusion-418307)$ curl http://34.124.195.115:30313
+Hello, world!
+Version: 2.0.0
+hello-world-6fdc99499c-tqwt4

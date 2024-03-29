@@ -1,0 +1,21 @@
+phamcongvi@cp1:~$ kubectl -n question4 logs pod2 -c c2
+Fri Mar 29 12:09:21 UTC 2024
+Fri Mar 29 12:09:26 UTC 2024
+Fri Mar 29 12:09:31 UTC 2024
+Fri Mar 29 12:09:36 UTC 2024
+phamcongvi@cp1:~$ kubectl -n question4 logs pod2 -c c2
+Fri Mar 29 12:09:21 UTC 2024
+Fri Mar 29 12:09:26 UTC 2024
+Fri Mar 29 12:09:31 UTC 2024
+Fri Mar 29 12:09:36 UTC 2024
+Fri Mar 29 12:09:41 UTC 2024
+Fri Mar 29 12:09:46 UTC 2024
+phamcongvi@cp1:~$ kubectl -n question4 logs pod2 -c c2
+Fri Mar 29 12:09:21 UTC 2024
+Fri Mar 29 12:09:26 UTC 2024
+Fri Mar 29 12:09:31 UTC 2024
+Fri Mar 29 12:09:36 UTC 2024
+Fri Mar 29 12:09:41 UTC 2024
+Fri Mar 29 12:09:46 UTC 2024
+Fri Mar 29 12:09:51 UTC 2024
+phamcongvi@cp1:~$ 
